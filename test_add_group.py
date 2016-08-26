@@ -10,12 +10,12 @@ def is_alert_present(wd):
     except:
         return False
 
-class (unittest.TestCase):
+class test_add_group(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(60)
     
-    def test_(self):
+    def test_test_add_group(self):
         success = True
         wd = self.wd
         wd.get("http://localhost/addressbook/")
@@ -31,9 +31,8 @@ class (unittest.TestCase):
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
         wd.find_element_by_name("group_name").send_keys("group2")
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys("group2")
+        if not wd.find_element_by_xpath("//div[@id='content']//select[normalize-space(.)='[none] group1']//option[1]").is_selected():
+            wd.find_element_by_xpath("//div[@id='content']//select[normalize-space(.)='[none] group1']//option[1]").click()
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
         wd.find_element_by_name("group_header").send_keys("group2 header")
@@ -43,6 +42,8 @@ class (unittest.TestCase):
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("group page").click()
         wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").send_keys("\\9")
         self.assertTrue(success)
     
     def tearDown(self):
